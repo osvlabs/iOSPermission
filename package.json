@@ -1,0 +1,17 @@
+{
+  "name": "@osvlabs/ios-permissions-vitta",
+  "version": "0.0.1",
+  "description": "",
+  "cordova": {
+    "id": "ios-permissions-vitta",
+    "platforms": [
+      "ios"
+    ]
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-ios"
+  ],
+  "author": "Vitta",
+  "license": "MIT"
+}
