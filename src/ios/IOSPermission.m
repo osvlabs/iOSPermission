@@ -29,6 +29,8 @@
                                 messageAsString:@"Not allow"];
           // 受限制,家长控制,不允许访问
         }
+        [self.commandDelegate sendPluginResult:pluginResult
+                                    callbackId:command.callbackId];
       }];
       break;
     }
@@ -36,22 +38,26 @@
       // 受限制,家长控制,不允许访问
       pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR
                                        messageAsString:@"Not allow"];
+      [self.commandDelegate sendPluginResult:pluginResult
+                                  callbackId:command.callbackId];
       break;
     case PHAuthorizationStatusDenied:
       // 用户拒绝授权使用相册，需提醒用户到设置里面去开启app相册权限
       pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR
                                        messageAsString:@"Not allow"];
+      [self.commandDelegate sendPluginResult:pluginResult
+                                  callbackId:command.callbackId];
       break;
     case PHAuthorizationStatusAuthorized:
       // 用户已经授权，可以使用
       pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
                                        messageAsString:@"Allow"];
+      [self.commandDelegate sendPluginResult:pluginResult
+                                  callbackId:command.callbackId];
       break;
     default:
       break;
     }
-    [self.commandDelegate sendPluginResult:pluginResult
-                                callbackId:command.callbackId];
   }];
 }
 - (void)checkCameraPermission:(CDVInvokedUrlCommand *)command {
@@ -79,22 +85,31 @@
                                          resultWithStatus:CDVCommandStatus_ERROR
                                           messageAsString:@"Not allow"];
                                    }
+                                   [self.commandDelegate
+                                       sendPluginResult:pluginResult
+                                             callbackId:command.callbackId];
                                  }];
       } break;
       case AVAuthorizationStatusRestricted:
         // 受限制,家长控制,不允许访问
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR
                                          messageAsString:@"Not allow"];
+        [self.commandDelegate sendPluginResult:pluginResult
+                                    callbackId:command.callbackId];
         break;
       case AVAuthorizationStatusDenied:
         // 用户拒绝授权使用相机，需提醒用户到设置里面去开启app相机权限
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR
                                          messageAsString:@"Not allow"];
+        [self.commandDelegate sendPluginResult:pluginResult
+                                    callbackId:command.callbackId];
         break;
       case AVAuthorizationStatusAuthorized:
         // 已经授权
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
                                          messageAsString:@"Allow"];
+        [self.commandDelegate sendPluginResult:pluginResult
+                                    callbackId:command.callbackId];
         break;
       default:
         break;
@@ -103,9 +118,9 @@
       // 没有检查到设备
       pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR
                                        messageAsString:@"Camera can't use"];
+      [self.commandDelegate sendPluginResult:pluginResult
+                                  callbackId:command.callbackId];
     }
-    [self.commandDelegate sendPluginResult:pluginResult
-                                callbackId:command.callbackId];
   }];
 }
 @end
